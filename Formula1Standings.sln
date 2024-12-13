@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formula1Standings.Models", "Formula1Standings.Models\Formula1Standings.Models.csproj", "{38C75F8B-A1F9-4B76-B1F7-1A2C28E20D1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{2D740DC3-4896-45DB-B373-5C80C8D832E2}"
+	ProjectSection(SolutionItems) = preProject
+		Data\circuits.json = Data\circuits.json
+		Data\drivers.json = Data\drivers.json
+		Data\driver_standings.json = Data\driver_standings.json
+		Data\lap_times.json = Data\lap_times.json
+		Data\races.json = Data\races.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38C75F8B-A1F9-4B76-B1F7-1A2C28E20D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38C75F8B-A1F9-4B76-B1F7-1A2C28E20D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38C75F8B-A1F9-4B76-B1F7-1A2C28E20D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38C75F8B-A1F9-4B76-B1F7-1A2C28E20D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

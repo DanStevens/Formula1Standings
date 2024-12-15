@@ -20,33 +20,31 @@ public class DriverInMemoryRepositoryTests
         
         var allDrivers = subject.GetAll();
 
-        using (new AssertionScope())
+        using var _ = new AssertionScope();
+        allDrivers.Should().HaveCount(858);
+        allDrivers.First().Should().Be(new Driver()
         {
-            allDrivers.Should().HaveCount(858);
-            allDrivers.First().Should().Be(new Driver()
-            {
-                Id = 1,
-                Reference = "hamilton",
-                Number = "44",
-                Code = "HAM",
-                Forename = "Lewis",
-                Surname = "Hamilton",
-                DateOfBirth = new DateOnly(1985, 1, 7),
-                Nationality = "British",
-                Url = new Uri("http://en.wikipedia.org/wiki/Lewis_Hamilton"),
-            });
-            allDrivers.Last().Should().Be(new Driver()
-            {
-                Id = 859,
-                Reference = "lawson",
-                Number = "40",
-                Code = "LAW",
-                Forename = "Liam",
-                Surname = "Lawson",
-                DateOfBirth = new DateOnly(2002, 2, 11),
-                Nationality = "New Zealander",
-                Url = new Uri("http://en.wikipedia.org/wiki/Liam_Lawson"),
-            });
-        }
+            Id = 1,
+            Reference = "hamilton",
+            Number = "44",
+            Code = "HAM",
+            Forename = "Lewis",
+            Surname = "Hamilton",
+            DateOfBirth = new DateOnly(1985, 1, 7),
+            Nationality = "British",
+            Url = new Uri("http://en.wikipedia.org/wiki/Lewis_Hamilton"),
+        });
+        allDrivers.Last().Should().Be(new Driver()
+        {
+            Id = 859,
+            Reference = "lawson",
+            Number = "40",
+            Code = "LAW",
+            Forename = "Liam",
+            Surname = "Lawson",
+            DateOfBirth = new DateOnly(2002, 2, 11),
+            Nationality = "New Zealander",
+            Url = new Uri("http://en.wikipedia.org/wiki/Liam_Lawson"),
+        });
     }
 }

@@ -20,33 +20,31 @@ public class CircuitInMemoryRepositoryTests
         
         var allCircuits = subject.GetAll();
 
-        using (new AssertionScope())
+        using var _ = new AssertionScope();
+        allCircuits.Should().HaveCount(77);
+        allCircuits.First().Should().Be(new Circuit()
         {
-            allCircuits.Should().HaveCount(77);
-            allCircuits.First().Should().Be(new Circuit()
-            {
-                Id = 1,
-                Reference = "albert_park",
-                Name = "Albert Park Grand Prix Circuit",
-                City = "Melbourne",
-                Country = "Australia",
-                Latitude = -37.8497,
-                Longitute = 144.968,
-                Altitude = 10,
-                Url = new Uri("http://en.wikipedia.org/wiki/Melbourne_Grand_Prix_Circuit")
-            });
-            allCircuits.Last().Should().Be(new Circuit()
-            {
-                Id = 79,
-                Reference = "miami",
-                Name = "Miami International Autodrome",
-                City = "Miami",
-                Country = "USA",
-                Latitude = 25.9581,
-                Longitute = -80.2389,
-                Altitude = 0,
-                Url = new Uri("http://en.wikipedia.org/wiki/Miami_International_Autodrome")
-            });
-        }
+            Id = 1,
+            Reference = "albert_park",
+            Name = "Albert Park Grand Prix Circuit",
+            City = "Melbourne",
+            Country = "Australia",
+            Latitude = -37.8497,
+            Longitute = 144.968,
+            Altitude = 10,
+            Url = new Uri("http://en.wikipedia.org/wiki/Melbourne_Grand_Prix_Circuit")
+        });
+        allCircuits.Last().Should().Be(new Circuit()
+        {
+            Id = 79,
+            Reference = "miami",
+            Name = "Miami International Autodrome",
+            City = "Miami",
+            Country = "USA",
+            Latitude = 25.9581,
+            Longitute = -80.2389,
+            Altitude = 0,
+            Url = new Uri("http://en.wikipedia.org/wiki/Miami_International_Autodrome")
+        });
     }
 }

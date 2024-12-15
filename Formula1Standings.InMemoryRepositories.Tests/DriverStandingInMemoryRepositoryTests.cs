@@ -20,27 +20,25 @@ public class DriverStandingInMemoryRepositoryTests
         
         var allStandings = subject.GetAll();
 
-        using (new AssertionScope())
+        using var _ = new AssertionScope();
+        allStandings.Should().HaveCount(34364);
+        allStandings.First().Should().Be(new DriverStanding()
         {
-            allStandings.Should().HaveCount(34364);
-            allStandings.First().Should().Be(new DriverStanding()
-            {
-                Id = 1,
-                RaceId = 18,
-                DriverId = 1,
-                Points = 10,
-                Position = 1,
-                Wins = 1,
-            });
-            allStandings.Last().Should().Be(new DriverStanding()
-            {
-                Id = 72577,
-                RaceId = 1121,
-                DriverId = 858,
-                Points = 0,
-                Position = 20,
-                Wins = 0,
-            });
-        }
+            Id = 1,
+            RaceId = 18,
+            DriverId = 1,
+            Points = 10,
+            Position = 1,
+            Wins = 1,
+        });
+        allStandings.Last().Should().Be(new DriverStanding()
+        {
+            Id = 72577,
+            RaceId = 1121,
+            DriverId = 858,
+            Points = 0,
+            Position = 20,
+            Wins = 0,
+        });
     }
 }

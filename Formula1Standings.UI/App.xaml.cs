@@ -4,7 +4,6 @@ using Formula1Standings.Models;
 using Formula1Standings.UI.Pages;
 using Formula1Standings.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -32,17 +31,20 @@ public partial class App : Application
         services.AddSingleton<IRepository<Circuit>>(CreateInMemoryRepository<Circuit>(@"Data\circuits.json"));
         services.AddSingleton<IRepository<Driver>>(CreateInMemoryRepository<Driver>(@"Data\drivers.json"));
         services.AddSingleton<IRepository<DriverStanding>>(CreateInMemoryRepository<DriverStanding>(@"Data\driver_standings.json"));
+        services.AddSingleton<IRepository<Race>>(CreateInMemoryRepository<Race>(@"Data\races.json"));
 
         // ViewModels
         services.AddTransient<CircuitsListViewModel>();
         services.AddTransient<DriversListViewModel>();
         services.AddTransient<DriverStandingsListViewModel>();
+        services.AddTransient<RacesListViewModel>();
 
         // Pages
         services.AddSingleton<MainPage>();
         services.AddKeyedSingleton<Page, CircuitsListPage>(nameof(CircuitsListPage));
         services.AddKeyedSingleton<Page, DriversListPage>(nameof(DriversListPage));
         services.AddKeyedSingleton<Page, DriverStandingsListPage>(nameof(DriverStandingsListPage));
+        services.AddKeyedSingleton<Page, RacesListPage>(nameof(RacesListPage));
 
         return services.BuildServiceProvider();
     }

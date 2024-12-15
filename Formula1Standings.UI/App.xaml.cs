@@ -31,15 +31,18 @@ public partial class App : Application
         // Services
         services.AddSingleton<IRepository<Circuit>>(CreateInMemoryRepository<Circuit>(@"Data\circuits.json"));
         services.AddSingleton<IRepository<Driver>>(CreateInMemoryRepository<Driver>(@"Data\drivers.json"));
+        services.AddSingleton<IRepository<DriverStanding>>(CreateInMemoryRepository<DriverStanding>(@"Data\driver_standings.json"));
 
         // ViewModels
         services.AddTransient<CircuitsListViewModel>();
         services.AddTransient<DriversListViewModel>();
+        services.AddTransient<DriverStandingsListViewModel>();
 
         // Pages
         services.AddSingleton<MainPage>();
         services.AddKeyedSingleton<Page, CircuitsListPage>(nameof(CircuitsListPage));
         services.AddKeyedSingleton<Page, DriversListPage>(nameof(DriversListPage));
+        services.AddKeyedSingleton<Page, DriverStandingsListPage>(nameof(DriverStandingsListPage));
 
         return services.BuildServiceProvider();
     }

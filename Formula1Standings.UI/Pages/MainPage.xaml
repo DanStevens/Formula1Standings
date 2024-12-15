@@ -18,6 +18,7 @@
             </StackPanel.Resources>
             <Button Content="Circuits" Tag="CircuitsListPage" Click="HandleMenuButtonClick"/>
             <Button Content="Drivers" Tag="DriversListPage" Click="HandleMenuButtonClick"/>
+            <Button Content="Driver Standings" Tag="DriverStandingsListPage" Click="HandleMenuButtonClick"/>
         </StackPanel>
     </StackPanel>
 </Page>

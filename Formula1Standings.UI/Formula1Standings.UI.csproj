@@ -41,6 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Pages\DriverStandingsListPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\DriversListPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

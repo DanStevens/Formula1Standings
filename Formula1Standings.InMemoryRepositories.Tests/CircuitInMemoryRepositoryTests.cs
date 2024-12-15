@@ -13,10 +13,10 @@ public class CircuitInMemoryRepositoryTests
     }
 
     [Test]
-    public async Task GetAll_ShouldReturnListOfCircuit_WhenGivenPathToCircuitsJson()
+    public void GetAll_ShouldReturnListOfCircuit_WhenGivenPathToCircuitsJson()
     {
         var subject = new CircuitInMemoryRepository();
-        await subject.LoadFromJsonFile(@"Data\circuits.json");
+        subject.LoadFromJsonFile(@"Data\circuits.json");
         
         var allCircuits = subject.GetAll();
 

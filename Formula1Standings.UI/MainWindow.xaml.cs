@@ -20,5 +20,7 @@ namespace Formula1Standings.UI
         {
             InitializeComponent();
         }
+
+        public void Navigate(Page page) => RootFrame.Navigate(page);
     }
 }

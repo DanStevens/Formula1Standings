@@ -1,5 +1,4 @@
 ﻿using Formula1Standings.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +14,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Formula1Standings.UI.Views;
+namespace Formula1Standings.UI.Pages;
 /// <summary>
-/// Interaction logic for CircuitsListView.xaml
+/// Interaction logic for CircuitsListPage.xaml
 /// </summary>
-public partial class CircuitsListView : UserControl
+public partial class CircuitsListPage : Page
 {
-    public CircuitsListView()
+    public CircuitsListPage()
     {
         InitializeComponent();
-        DataContext = App.Current.ServiceProvider.GetService<CircuitsListViewModel>();
+    }
+
+    public CircuitsListPage(CircuitsListViewModel viewModel) : this()
+    {
+        DataContext = viewModel;
     }
 }

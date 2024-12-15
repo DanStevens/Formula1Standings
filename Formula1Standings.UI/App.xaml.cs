@@ -1,9 +1,11 @@
 ﻿using Formula1Standings.DataAccess;
 using Formula1Standings.InMemoryRepositories;
-using Formula1Standings.UI.Views;
+using Formula1Standings.UI.Pages;
 using Formula1Standings.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using System.Net;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Formula1Standings.UI;
 
@@ -12,13 +14,13 @@ namespace Formula1Standings.UI;
 /// </summary>
 public partial class App : Application
 {
-    public IServiceProvider ServiceProvider { get; }
+    private IServiceProvider _serviceProvider;
+    private MainWindow _mainWindow;
 
-    public new static App Current => (App)Application.Current;
-
-    public App() : base()
+    public App()
     {
-        ServiceProvider = ConfigureServices();
+        _serviceProvider = ConfigureServices();
+        _mainWindow = new MainWindow();
     }
 
     private IServiceProvider ConfigureServices()
@@ -33,6 +35,34 @@ public partial class App : Application
         // ViewModels
         services.AddTransient<CircuitsListViewModel>();
 
+        // Pages
+        services.AddSingleton<MainPage>();
+        services.AddKeyedSingleton<Page, CircuitsListPage>(nameof(CircuitsListPage));
+
         return services.BuildServiceProvider();
+    }
+
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+
+        var mainPage = _serviceProvider.GetService<MainPage>()!;
+        mainPage.NavigationRequested += HandleNavigationRequest;
+        _mainWindow.Navigate(mainPage);
+        _mainWindow.Show();
+    }
+
+    private void HandleNavigationRequest(object? sender, NavigationEventArgs e)
+    {
+        var page = _serviceProvider.GetKeyedService<Page>(e.Key);
+        if (page != null)
+            _mainWindow.Navigate(page);
+    }
+
+    protected override void OnExit(ExitEventArgs e)
+    {
+        base.OnExit(e);
+
+        (_serviceProvider as IDisposable)?.Dispose();
     }
 }

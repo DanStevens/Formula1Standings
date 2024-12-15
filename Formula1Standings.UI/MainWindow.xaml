@@ -4,11 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Formula1Standings.UI"
-        xmlns:views="clr-namespace:Formula1Standings.UI.Views"
+        xmlns:pages="clr-namespace:Formula1Standings.UI.Pages"
         mc:Ignorable="d"
         Title="Formula One Standings" Height="450" Width="800">
-    <StackPanel Orientation="Vertical" Margin="10">
-        <TextBlock Style="{StaticResource Heading1}" HorizontalAlignment="Center">Circuits</TextBlock>
-        <views:CircuitsListView />
-    </StackPanel>
+    <Frame x:Name="RootFrame" NavigationUIVisibility="Visible" />
 </Window>

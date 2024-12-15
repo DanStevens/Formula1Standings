@@ -4,9 +4,9 @@ using Formula1Standings.Models;
 
 namespace Formula1Standings.ViewModels;
 
-public class CircuitsListViewModel(
-    IRepository<Circuit> repo
+public class DriversListViewModel(
+    IRepository<Driver> repo
 ) : ObservableObject
 {
-    public IList<Circuit> Circuits { get; } = repo.GetAll();
+    public IList<Driver> Drivers { get; } = repo.GetAll();
 }

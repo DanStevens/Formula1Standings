@@ -1,9 +1,10 @@
-﻿using Formula1Standings.Models;
+﻿using Formula1Standings.DataAccess;
+using Formula1Standings.Models;
 using System.Text.Json;
 
 namespace Formula1Standings.InMemoryRepositories
 {
-    public class InMemoryRepository<T>
+    public class InMemoryRepository<T> : IRepository<T>
     {
         private readonly List<T> _records = new List<T>();
 

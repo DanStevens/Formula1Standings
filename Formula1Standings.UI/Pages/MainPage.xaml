@@ -11,11 +11,13 @@
         <TextBlock Style="{StaticResource Heading1}" HorizontalAlignment="Center">Formula One Standings</TextBlock>
         <StackPanel Orientation="Vertical" Width="150" Margin="10">
             <StackPanel.Resources>
-                <Style TargetType="{x:Type FrameworkElement}">
+                <Style TargetType="{x:Type Button}">
                     <Setter Property="Margin" Value="0,0,0,5" />
+                    <Setter Property="FontSize" Value="16" />
                 </Style>
             </StackPanel.Resources>
             <Button Content="Circuits" Tag="CircuitsListPage" Click="HandleMenuButtonClick"/>
+            <Button Content="Drivers" Tag="DriversListPage" Click="HandleMenuButtonClick"/>
         </StackPanel>
     </StackPanel>
 </Page>

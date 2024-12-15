@@ -3,14 +3,14 @@ using System.Windows.Controls;
 
 namespace Formula1Standings.UI.Pages;
 
-public partial class CircuitsListPage : Page
+public partial class DriversListPage : Page
 {
-    public CircuitsListPage()
+    public DriversListPage()
     {
         InitializeComponent();
     }
 
-    public CircuitsListPage(CircuitsListViewModel viewModel) : this()
+    public DriversListPage(DriversListViewModel viewModel) : this()
     {
         DataContext = viewModel;
     }

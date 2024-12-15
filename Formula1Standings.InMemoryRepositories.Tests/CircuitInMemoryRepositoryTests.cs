@@ -7,15 +7,15 @@ public class CircuitInMemoryRepositoryTests
     [Test]
     public void CreateDefaultInstance()
     {
-        var subject = new CircuitInMemoryRepository();
+        var subject = new InMemoryRepository<Circuit>();
         subject.Should().NotBeNull();
         subject.GetAll().Should().BeEmpty();
     }
 
     [Test]
-    public void GetAll_ShouldReturnListOfCircuit_WhenGivenPathToCircuitsJson()
+    public void GetAll_ShouldReturnListOfCircuits_WhenGivenPathToCircuitsJson()
     {
-        var subject = new CircuitInMemoryRepository();
+        var subject = new InMemoryRepository<Circuit>();
         subject.LoadFromJsonFile(@"Data\circuits.json");
         
         var allCircuits = subject.GetAll();

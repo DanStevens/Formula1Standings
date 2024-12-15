@@ -30,4 +30,6 @@ public record class Circuit
     
     [JsonPropertyName("url")]
     public required Uri Url { get; init; }
+
+    public override string ToString() => Name;
 }

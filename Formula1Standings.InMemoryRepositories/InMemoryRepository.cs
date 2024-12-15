@@ -12,10 +12,10 @@ namespace Formula1Standings.InMemoryRepositories
             return _records.ToArray();
         }
 
-        public async Task LoadFromJsonFile(string path)
+        public void LoadFromJsonFile(string path)
         {
             using var jsonFile = File.OpenRead(path);
-            var allRecords = await JsonSerializer.DeserializeAsync<T[]>(jsonFile);
+            var allRecords = JsonSerializer.Deserialize<T[]>(jsonFile);
             _records.AddRange(allRecords!);
         }
     }

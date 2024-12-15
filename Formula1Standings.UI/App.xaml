@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:Formula1Standings.UI"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="Heading1" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <Style x:Key="Heading2" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontWeight" Value="Normal" />
+        </Style>
     </Application.Resources>
 </Application>

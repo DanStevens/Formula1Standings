@@ -8,5 +8,5 @@ public class CircuitsListViewModel(
     ICircuitRepository repo
 ) : ObservableObject
 {
-    public IList<Circuit> Circuits { get;} = repo.GetAll();
+    public IList<Circuit> Circuits { get; } = repo.GetAll();
 }

@@ -20,6 +20,7 @@
             <Button Content="Drivers" Tag="DriversListPage" Click="HandleMenuButtonClick"/>
             <Button Content="Driver Standings" Tag="DriverStandingsListPage" Click="HandleMenuButtonClick"/>
             <Button Content="Races" Tag="RacesListPage" Click="HandleMenuButtonClick"/>
+            <Button Content="Lap Times" Tag="LapTimesListPage" Click="HandleMenuButtonClick"/>
         </StackPanel>
     </StackPanel>
 </Page>

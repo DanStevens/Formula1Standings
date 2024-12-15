@@ -121,8 +121,34 @@ namespace Formula1Standings.Models.Tests
                 DriverId = 1,
                 Lap = 1,
                 Position = 1,
-                Time = "1:0.0",
                 Milliseconds = 60_000,
+            };
+
+            var parseResult = JsonSerializer.Deserialize<LapTime>(json);
+            parseResult.Should().Be(expected);
+        }
+
+        [Test]
+        public void ParseExampleLapTimeWithExponentInMilliseconds()
+        {
+            string json = """
+                {
+                  "raceId": 846,
+                  "driverId": 20,
+                  "lap": 72,
+                  "position": 1,
+                  "time": "21:53.041",
+                  "milliseconds": 1.313041E+6
+                }
+                """;
+
+            var expected = new LapTime()
+            {
+                RaceId = 846,
+                DriverId = 20,
+                Lap = 72,
+                Position = 1,
+                Milliseconds = 1.313041E+6,
             };
 
             var parseResult = JsonSerializer.Deserialize<LapTime>(json);

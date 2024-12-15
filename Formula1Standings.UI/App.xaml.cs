@@ -32,12 +32,14 @@ public partial class App : Application
         services.AddSingleton<IRepository<Driver>>(CreateInMemoryRepository<Driver>(@"Data\drivers.json"));
         services.AddSingleton<IRepository<DriverStanding>>(CreateInMemoryRepository<DriverStanding>(@"Data\driver_standings.json"));
         services.AddSingleton<IRepository<Race>>(CreateInMemoryRepository<Race>(@"Data\races.json"));
+        services.AddSingleton<IRepository<LapTime>>(CreateInMemoryRepository<LapTime>(@"Data\lap_times.json"));
 
         // ViewModels
         services.AddTransient<CircuitsListViewModel>();
         services.AddTransient<DriversListViewModel>();
         services.AddTransient<DriverStandingsListViewModel>();
         services.AddTransient<RacesListViewModel>();
+        services.AddTransient<LapTimesListViewModel>();
 
         // Pages
         services.AddSingleton<MainPage>();
@@ -45,6 +47,7 @@ public partial class App : Application
         services.AddKeyedSingleton<Page, DriversListPage>(nameof(DriversListPage));
         services.AddKeyedSingleton<Page, DriverStandingsListPage>(nameof(DriverStandingsListPage));
         services.AddKeyedSingleton<Page, RacesListPage>(nameof(RacesListPage));
+        services.AddKeyedSingleton<Page, LapTimesListPage>(nameof(LapTimesListPage));
 
         return services.BuildServiceProvider();
     }

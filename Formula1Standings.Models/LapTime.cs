@@ -16,9 +16,12 @@ public record class LapTime
     [JsonPropertyName("position")]
     public required int Position { get; init; }
 
-    [JsonPropertyName("time")]
-    public required string Time { get; init; }
+    public TimeSpan Time { get; private set; }
 
     [JsonPropertyName("milliseconds")]
-    public required int Milliseconds { get; init; }
+    public required double Milliseconds
+    {
+        get => Time.TotalMilliseconds;
+        init => Time = TimeSpan.FromMilliseconds(value);
+    }
 }

@@ -31,8 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Formula1Standings.DataAccess\Formula1Standings.DataAccess.csproj" />
-    <ProjectReference Include="..\Formula1Standings.InMemoryRepositories\Formula1Standings.InMemoryRepositories.csproj" />
+    <ProjectReference Include="..\Formula1Standings.ServiceImplementations\Formula1Standings.ServiceImplementations.csproj" />
     <ProjectReference Include="..\Formula1Standings.ViewModels\Formula1Standings.ViewModels.csproj" />
   </ItemGroup>
 

@@ -7,16 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Formula1Standings.Models\Formula1Standings.Models.csproj" />
     <ProjectReference Include="..\Formula1Standings.Services\Formula1Standings.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Using Include="CommunityToolkit.Mvvm.ComponentModel" />
   </ItemGroup>
 
 </Project>

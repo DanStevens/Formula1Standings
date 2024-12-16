@@ -1,5 +1,5 @@
-﻿using Formula1Standings.DataAccess;
-using Formula1Standings.InMemoryRepositories;
+﻿using Formula1Standings.Services;
+using Formula1Standings.ServiceImplementations;
 using Formula1Standings.UI.Pages;
 using Formula1Standings.ViewModels;
 using Microsoft.Extensions.DependencyInjection;

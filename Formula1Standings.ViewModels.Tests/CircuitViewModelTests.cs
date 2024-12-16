@@ -28,7 +28,7 @@ public class CircuitViewModelTests
         },
                 new()
         {
-            Id = 2,
+            Id = 3,
             Round = 3,
             CircuitId = 1,
             Name = "Example Race 3",

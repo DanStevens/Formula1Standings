@@ -17,6 +17,30 @@
                 <DataGridTextColumn Header="City" Binding="{Binding Model.City}" />
                 <DataGridTextColumn Header="Country" Binding="{Binding Model.Country}" />
                 <DataGridTextColumn Header="Number of Races" Binding="{Binding Races.Count}" />
+                <DataGridTemplateColumn Header="Fastest Lap">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding FastestLap}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                                <Run Text="{Binding FastestLap.Model.Time, Mode=OneWay, StringFormat=\{0:mm\\:ss\\.fff\}}" />
+                                <Run Text="set by" />
+                                <Run Text="{Binding FastestLap.Driver.FullName, Mode=OneWay}" />
+                                <Run Text="at" />
+                                <Run Text="{Binding FastestLap.Race.Name, Mode=OneWay}" />
+                                <Run Text="in" />
+                                <Run Text="{Binding FastestLap.Race.Year, Mode=OneWay}" />
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

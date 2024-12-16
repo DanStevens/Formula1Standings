@@ -15,9 +15,7 @@ public class LapTimeInMemoryRepositoryTests
     [Test]
     public void GetAll_ShouldReturnListOfLapTimes_WhenGivenPathToLapTimesJson()
     {
-        var subject = new LapTimeInMemoryRepository();
-        subject.LoadFromJsonFile(@"Data\lap_times.json");
-
+        var subject = CreateTestSubject();
         var allLapTimes = subject.GetAll();
 
         using var _ = new AssertionScope();
@@ -38,5 +36,38 @@ public class LapTimeInMemoryRepositoryTests
             Position = 16,
             Milliseconds = 95602,
         });
+    }
+
+    [Test]
+    public void GetByRace_ShouldReturnAllLapTimesForGivenRace()
+    {
+        var subject = CreateTestSubject();
+        var lapTimes = subject.GetByRace(1);
+
+        using var _ = new AssertionScope();
+        lapTimes.Should().HaveCount(1005);
+        lapTimes.First().Should().Be(new LapTime()
+        {
+            RaceId = 1,
+            DriverId = 1,
+            Lap = 1,
+            Position = 13,
+            Milliseconds = 109088
+        });
+        lapTimes.Last().Should().Be(new LapTime()
+        {
+            RaceId = 1,
+            DriverId = 22,
+            Lap = 58,
+            Position = 2,
+            Milliseconds = 151564,
+        });
+    }
+
+    private static LapTimeInMemoryRepository CreateTestSubject()
+    {
+        var subject = new LapTimeInMemoryRepository();
+        subject.LoadFromJsonFile(@"Data\lap_times.json");
+        return subject;
     }
 }

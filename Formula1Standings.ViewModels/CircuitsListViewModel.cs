@@ -3,9 +3,21 @@ using Formula1Standings.Models;
 
 namespace Formula1Standings.ViewModels;
 
-public class CircuitsListViewModel(
-    ICircuitRepository repo
-) : ObservableObject
+public class CircuitsListViewModel : ObservableObject
 {
-    public IList<Circuit> Circuits { get; } = repo.GetAll();
+    public CircuitsListViewModel(
+        ICircuitRepository repo,
+        Func<CircuitViewModel> circuitViewModelFactory)
+    {
+        Circuits = repo.GetAll().Select(Wrap).ToArray();
+
+        CircuitViewModel Wrap(Circuit circuit)
+        {
+            var vm = circuitViewModelFactory();
+            vm.Model = circuit;
+            return vm;
+        }
+    }
+
+    public IList<CircuitViewModel> Circuits { get; }
 }

@@ -11,6 +11,12 @@
       Title="Circuits">
     <DockPanel>
         <TextBlock DockPanel.Dock="Top" Style="{StaticResource Heading1}" HorizontalAlignment="Center">Circuits</TextBlock>
-        <DataGrid Margin="10" ItemsSource="{Binding Circuits}" IsReadOnly="True" />
+        <DataGrid Margin="10" ItemsSource="{Binding Circuits}" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Model.Name}" />
+                <DataGridTextColumn Header="City" Binding="{Binding Model.City}" />
+                <DataGridTextColumn Header="Country" Binding="{Binding Model.Country}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </DockPanel>
 </Page>

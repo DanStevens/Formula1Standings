@@ -8,7 +8,7 @@ Requirements:
   - .NET 9 runtime
 
 To test a release build:
-  1. Download the [First Release (0.1.0)](https://github.com/DanStevens/Formula1Standings/releases/tag/0.1.0).
+  1. Download the [latest release (0.2.0)](https://github.com/DanStevens/Formula1Standings/releases/tag/0.2.0).
   2. extract the ZIP file to a folder.
   3. Run _Formula1Standings.UI.exe_.
 

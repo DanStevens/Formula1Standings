@@ -32,6 +32,7 @@ public partial class App : Application
         services.AddSingleton<IDriverStandingRepository>(new DriverStandingInMemoryRepository(@"Data\driver_standings.json"));
         services.AddSingleton<IRaceRepository>(new RaceInMemoryRepository(@"Data\races.json"));
         services.AddSingleton<ILapTimeRepository>(new LapTimeInMemoryRepository(@"Data\lap_times.json"));
+        services.AddSingleton<IDriverStatsProvider, DriverStatsProvider>();
 
         // ViewModels
         services.AddTransient<CircuitsListViewModel>();
@@ -43,6 +44,7 @@ public partial class App : Application
         services.AddTransient<RaceViewModel>();
         services.AddTransient<LapTimeViewModel>();
         services.AddTransient<CircuitViewModel>();
+        services.AddTransient<DriverViewModel>();
 
         // Pages
         services.AddSingleton<MainPage>();
@@ -57,6 +59,7 @@ public partial class App : Application
         services.AddTransient<Func<RaceViewModel>>(serviceProvider => () => serviceProvider.GetRequiredService<RaceViewModel>());
         services.AddTransient<Func<LapTimeViewModel>>(serviceProvider => () => serviceProvider.GetRequiredService<LapTimeViewModel>());
         services.AddTransient<Func<CircuitViewModel>>(serviceProvider => () => serviceProvider.GetRequiredService<CircuitViewModel>());
+        services.AddTransient<Func<DriverViewModel>>(serviceProvider => () => serviceProvider.GetRequiredService<DriverViewModel>());
 
         return services.BuildServiceProvider();
     }

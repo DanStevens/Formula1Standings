@@ -15,9 +15,8 @@ public class DriverInMemoryRepositoryTests
     [Test]
     public void GetAll_ShouldReturnListOfDrivers_WhenGivenPathToDriversJson()
     {
-        var subject = new DriverInMemoryRepository();
-        subject.LoadFromJsonFile(@"Data\drivers.json");
-        
+        var subject = CreateTestSubject();
+
         var allDrivers = subject.GetAll();
 
         using var _ = new AssertionScope();
@@ -47,4 +46,12 @@ public class DriverInMemoryRepositoryTests
             Url = new Uri("http://en.wikipedia.org/wiki/Liam_Lawson"),
         });
     }
+
+    private static DriverInMemoryRepository CreateTestSubject()
+    {
+        var subject = new DriverInMemoryRepository();
+        subject.LoadFromJsonFile(@"Data\drivers.json");
+        return subject;
+    }
+
 }

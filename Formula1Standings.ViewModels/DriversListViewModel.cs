@@ -3,9 +3,22 @@ using Formula1Standings.Models;
 
 namespace Formula1Standings.ViewModels;
 
-public class DriversListViewModel(
-    IDriverRepository repo
-) : ObservableObject
+public class DriversListViewModel : ObservableObject
 {
-    public IList<Driver> Drivers { get; } = repo.GetAll();
+    public DriversListViewModel(
+        IDriverRepository driverRepo,
+        Func<DriverViewModel> driverViewModelFactory)
+    {
+        Drivers = driverRepo.GetAll().Select(Wrap).ToArray();
+
+        DriverViewModel Wrap(Driver driver)
+        {
+            var vm = driverViewModelFactory();
+            vm.Model = driver;
+            return vm;
+        }
+    }
+
+    public IList<DriverViewModel> Drivers { get; }
+
 }

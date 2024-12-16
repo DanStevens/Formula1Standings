@@ -11,6 +11,16 @@
       Title="Drivers">
     <DockPanel>
         <TextBlock DockPanel.Dock="Top" Style="{StaticResource Heading1}" HorizontalAlignment="Center">Drivers</TextBlock>
-        <DataGrid Margin="10" ItemsSource="{Binding Drivers}" IsReadOnly="True" />
+        <DataGrid Margin="10" ItemsSource="{Binding Drivers}" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Model.FullName}" />
+                <DataGridTextColumn Header="Nationality" Binding="{Binding Model.Nationality}" />
+                <DataGridTextColumn Header="Date of Birth" Binding="{Binding Model.DateOfBirth}" />
+                <DataGridTextColumn Header="Code" Binding="{Binding Model.Code}" />
+                <DataGridTextColumn Header="Reference" Binding="{Binding Model.Reference}" />
+                <DataGridTextColumn Header="Total Races" Binding="{Binding RacePartipicationCount}" />
+                <DataGridHyperlinkColumn Header="URL" Binding="{Binding Model.Url}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </DockPanel>
 </Page>

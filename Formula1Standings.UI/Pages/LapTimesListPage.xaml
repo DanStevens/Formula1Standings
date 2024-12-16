@@ -11,6 +11,20 @@
       Title="Lap Times">
     <DockPanel>
         <TextBlock DockPanel.Dock="Top" Style="{StaticResource Heading1}" HorizontalAlignment="Center">Lap Times</TextBlock>
-        <DataGrid Margin="10" ItemsSource="{Binding LapTimes}" IsReadOnly="True" />
+        <DataGrid Margin="10" ItemsSource="{Binding LapTimes}" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Resources>
+                <Style x:Key="RightHorizontalAlignment" TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Race" Binding="{Binding Race.Name}" />
+                <DataGridTextColumn Header="Year" Binding="{Binding Race.Year}" />
+                <DataGridTextColumn Header="Driver" Binding="{Binding Driver.FullName}" />
+                <DataGridTextColumn Header="Lap" Binding="{Binding Model.Lap}" />
+                <DataGridTextColumn Header="Time"
+                                    Binding="{Binding Model.Time, StringFormat=\{0:hh\\:mm\\:ss\\.fff\}}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </DockPanel>
 </Page>

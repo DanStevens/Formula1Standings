@@ -3,9 +3,22 @@ using Formula1Standings.Models;
 
 namespace Formula1Standings.ViewModels;
 
-public class LapTimesListViewModel(
-    ILapTimeRepository repo
-) : ObservableObject
+public class LapTimesListViewModel : ObservableObject
 {
-    public IList<LapTime> LapTimes { get; } = repo.GetAll();
+    public LapTimesListViewModel(
+        ILapTimeRepository repo,
+        Func<LapTimeViewModel> lapTimeViewModelFactory
+)
+    {
+        LapTimes = repo.GetAll().Select(Wrap).ToArray();
+
+        LapTimeViewModel Wrap(LapTime lapTime)
+        {
+            var vm = lapTimeViewModelFactory();
+            vm.Model = lapTime;
+            return vm;
+        }
+    }
+
+    public IList<LapTimeViewModel> LapTimes { get; }
 }

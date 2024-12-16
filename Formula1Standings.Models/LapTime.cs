@@ -18,6 +18,8 @@ public record class LapTime
 
     public TimeSpan Time { get; private set; }
 
+    public string TimeFormatted => Time.ToString(Time.TotalHours >= 1 ? @"hh\:mm\:ss\.fff" : @"mm\:ss\.fff");
+
     [JsonPropertyName("milliseconds")]
     public required double Milliseconds
     {

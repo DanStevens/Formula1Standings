@@ -41,6 +41,7 @@ public partial class App : Application
         services.AddTransient<LapTimesListViewModel>();
         services.AddTransient<DriverStandingViewModel>();
         services.AddTransient<RaceViewModel>();
+        services.AddTransient<LapTimeViewModel>();
 
         // Pages
         services.AddSingleton<MainPage>();
@@ -53,6 +54,7 @@ public partial class App : Application
         // Factories
         services.AddTransient<Func<DriverStandingViewModel>>(serviceProvider => () => serviceProvider.GetRequiredService<DriverStandingViewModel>());
         services.AddTransient<Func<RaceViewModel>>(serviceProvider => () => serviceProvider.GetRequiredService<RaceViewModel>());
+        services.AddTransient<Func<LapTimeViewModel>>(serviceProvider => () => serviceProvider.GetRequiredService<LapTimeViewModel>());
 
         return services.BuildServiceProvider();
     }

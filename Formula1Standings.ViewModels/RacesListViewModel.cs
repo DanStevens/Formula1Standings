@@ -3,9 +3,23 @@ using Formula1Standings.Models;
 
 namespace Formula1Standings.ViewModels;
 
-public class RacesListViewModel(
-    IRaceRepository repo
-) : ObservableObject
+public class RacesListViewModel : ObservableObject
 {
-    public IList<Race> Races { get; } = repo.GetAll();
+    public RacesListViewModel(
+        IRaceRepository repo,
+        Func<RaceViewModel> raceViewModelFactory)
+    {
+        Races = repo.GetAll().Select(Wrap).ToArray();
+
+        RaceViewModel Wrap(Race race)
+        {
+            var vm = raceViewModelFactory();
+            vm.Model = race;
+            return vm;
+        }
+    }
+
+    public IList<RaceViewModel> Races { get; }
+
+
 }

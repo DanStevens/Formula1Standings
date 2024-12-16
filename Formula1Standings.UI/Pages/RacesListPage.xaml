@@ -11,6 +11,14 @@
       Title="Races">
     <DockPanel>
         <TextBlock DockPanel.Dock="Top" Style="{StaticResource Heading1}" HorizontalAlignment="Center">Races</TextBlock>
-        <DataGrid Margin="10" ItemsSource="{Binding Races}" IsReadOnly="True" />
+        <DataGrid Margin="10" ItemsSource="{Binding Races}" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Model.Name}" />
+                <DataGridTextColumn Header="Round" Binding="{Binding Model.Round}" />
+                <DataGridTextColumn Header="Circuit" Binding="{Binding Circuit.Name}" />
+                <DataGridTextColumn Header="Date" Binding="{Binding Model.Date}" />
+                <DataGridTextColumn Header="Time" Binding="{Binding Model.Time}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </DockPanel>
 </Page>

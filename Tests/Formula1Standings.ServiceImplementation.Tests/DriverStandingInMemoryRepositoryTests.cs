@@ -15,9 +15,8 @@ public class DriverStandingInMemoryRepositoryTests
     [Test]
     public void GetAll_ShouldReturnListOfStandings_WhenGivenPathToDriverStandingsJson()
     {
-        var subject = new DriverStandingInMemoryRepository();
-        subject.LoadFromJsonFile(@"Data\driver_standings.json");
-        
+        var subject = CreateTestSubject();
+
         var allStandings = subject.GetAll();
 
         using var _ = new AssertionScope();
@@ -40,5 +39,18 @@ public class DriverStandingInMemoryRepositoryTests
             Position = 20,
             Wins = 0,
         });
+    }
+
+    [Test]
+    public void GetByDriver_ShouldReturnAllStandingsForGivenDriver()
+    {
+        var subject = CreateTestSubject();
+        var standings = subject.GetByDriver(1);
+        standings.Should().HaveCount(333);
+    }
+
+    private static DriverStandingInMemoryRepository CreateTestSubject()
+    {
+        return new DriverStandingInMemoryRepository(@"Data\driver_standings.json");
     }
 }

@@ -21,7 +21,7 @@ public class CircuitsListViewModelTests
     [Test]
     public void Circuits_ShouldBeEmpty_WhenRepositoryIsEmpty()
     {
-        var mockRepo = new Mock<IRepository<Circuit>>();
+        var mockRepo = new Mock<ICircuitRepository>();
         mockRepo.Setup(x => x.GetAll()).Returns(Array.Empty<Circuit>());
         var subject = new CircuitsListViewModel(mockRepo.Object);
         subject.Circuits.Should().BeEmpty();
@@ -31,7 +31,7 @@ public class CircuitsListViewModelTests
     public void Circuits_ShouldContainOneCircuit_WhenRepositoryContainsOneItem()
     {
         IList<Circuit> allCircuits = [ExampleCircuit];
-        var mockRepo = new Mock<IRepository<Circuit>>();
+        var mockRepo = new Mock<ICircuitRepository>();
         mockRepo.Setup(x => x.GetAll()).Returns(allCircuits);
         var subject = new CircuitsListViewModel(mockRepo.Object);
         subject.Circuits.Should().BeEquivalentTo(allCircuits);

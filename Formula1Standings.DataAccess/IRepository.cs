@@ -1,6 +1,7 @@
 ﻿namespace Formula1Standings.DataAccess;
 
-public interface IRepository<T>
+public interface IRepository<TKey, TModel>
 {
-    IList<T> GetAll();
+    TModel Get(TKey key);
+    IList<TModel> GetAll();
 }

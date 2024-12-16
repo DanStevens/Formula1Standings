@@ -7,7 +7,7 @@ public class DriverStandingInMemoryRepositoryTests
     [Test]
     public void CreateDefaultInstance()
     {
-        var subject = new InMemoryRepository<DriverStanding>();
+        var subject = new DriverStandingInMemoryRepository();
         subject.Should().NotBeNull();
         subject.GetAll().Should().BeEmpty();
     }
@@ -15,7 +15,7 @@ public class DriverStandingInMemoryRepositoryTests
     [Test]
     public void GetAll_ShouldReturnListOfStandings_WhenGivenPathToDriverStandingsJson()
     {
-        var subject = new InMemoryRepository<DriverStanding>();
+        var subject = new DriverStandingInMemoryRepository();
         subject.LoadFromJsonFile(@"Data\driver_standings.json");
         
         var allStandings = subject.GetAll();

@@ -7,7 +7,7 @@ public class DriverInMemoryRepositoryTests
     [Test]
     public void CreateDefaultInstance()
     {
-        var subject = new InMemoryRepository<Driver>();
+        var subject = new DriverInMemoryRepository();
         subject.Should().NotBeNull();
         subject.GetAll().Should().BeEmpty();
     }
@@ -15,7 +15,7 @@ public class DriverInMemoryRepositoryTests
     [Test]
     public void GetAll_ShouldReturnListOfDrivers_WhenGivenPathToDriversJson()
     {
-        var subject = new InMemoryRepository<Driver>();
+        var subject = new DriverInMemoryRepository();
         subject.LoadFromJsonFile(@"Data\drivers.json");
         
         var allDrivers = subject.GetAll();

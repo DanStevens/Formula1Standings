@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Formula1Standings.DataAccess\Formula1Standings.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Using Include="CommunityToolkit.Mvvm.ComponentModel" />
+  </ItemGroup>
+
 </Project>

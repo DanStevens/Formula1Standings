@@ -7,7 +7,7 @@ public class LapTimeInMemoryRepositoryTests
     [Test]
     public void CreateDefaultInstance()
     {
-        var subject = new InMemoryRepository<LapTime>();
+        var subject = new LapTimeInMemoryRepository();
         subject.Should().NotBeNull();
         subject.GetAll().Should().BeEmpty();
     }
@@ -15,7 +15,7 @@ public class LapTimeInMemoryRepositoryTests
     [Test]
     public void GetAll_ShouldReturnListOfLapTimes_WhenGivenPathToLapTimesJson()
     {
-        var subject = new InMemoryRepository<LapTime>();
+        var subject = new LapTimeInMemoryRepository();
         subject.LoadFromJsonFile(@"Data\lap_times.json");
 
         var allLapTimes = subject.GetAll();

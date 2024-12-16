@@ -7,7 +7,7 @@ public class RaceInMemoryRepositoryTests
     [Test]
     public void CreateDefaultInstance()
     {
-        var subject = new InMemoryRepository<Race>();
+        var subject = new RaceInMemoryRepository();
         subject.Should().NotBeNull();
         subject.GetAll().Should().BeEmpty();
     }
@@ -15,7 +15,7 @@ public class RaceInMemoryRepositoryTests
     [Test]
     public void GetAll_ShouldReturnListOfRaces_WhenGivenPathToRacesJson()
     {
-        var subject = new InMemoryRepository<Race>();
+        var subject = new RaceInMemoryRepository();
         subject.LoadFromJsonFile(@"Data\races.json");
         
         var allRaces = subject.GetAll();

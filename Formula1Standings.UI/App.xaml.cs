@@ -28,11 +28,11 @@ public partial class App : Application
         var services = new ServiceCollection();
 
         // Services
-        services.AddSingleton<IRepository<Circuit>>(CreateInMemoryRepository<Circuit>(@"Data\circuits.json"));
-        services.AddSingleton<IRepository<Driver>>(CreateInMemoryRepository<Driver>(@"Data\drivers.json"));
-        services.AddSingleton<IRepository<DriverStanding>>(CreateInMemoryRepository<DriverStanding>(@"Data\driver_standings.json"));
-        services.AddSingleton<IRepository<Race>>(CreateInMemoryRepository<Race>(@"Data\races.json"));
-        services.AddSingleton<IRepository<LapTime>>(CreateInMemoryRepository<LapTime>(@"Data\lap_times.json"));
+        services.AddSingleton<ICircuitRepository>(new CircuitInMemoryRepository(@"Data\circuits.json"));
+        services.AddSingleton<IDriverRepository>(new DriverInMemoryRepository(@"Data\drivers.json"));
+        services.AddSingleton<IDriverStandingRepository>(new DriverStandingInMemoryRepository(@"Data\driver_standings.json"));
+        services.AddSingleton<IRaceRepository>(new RaceInMemoryRepository(@"Data\races.json"));
+        services.AddSingleton<ILapTimeRepository>(new LapTimeInMemoryRepository(@"Data\lap_times.json"));
 
         // ViewModels
         services.AddTransient<CircuitsListViewModel>();
@@ -50,13 +50,6 @@ public partial class App : Application
         services.AddKeyedSingleton<Page, LapTimesListPage>(nameof(LapTimesListPage));
 
         return services.BuildServiceProvider();
-    }
-
-    private static InMemoryRepository<T> CreateInMemoryRepository<T>(string jsonPath)
-    {
-        var circuitsRepository = new InMemoryRepository<T>();
-        circuitsRepository.LoadFromJsonFile(jsonPath);
-        return circuitsRepository;
     }
 
     protected override void OnStartup(StartupEventArgs e)

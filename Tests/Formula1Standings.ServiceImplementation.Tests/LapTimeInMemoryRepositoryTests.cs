@@ -64,6 +64,32 @@ public class LapTimeInMemoryRepositoryTests
         });
     }
 
+    [Test]
+    public void GetByDriver_ShouldReturnAllLapTimesForGivenDriver()
+    {
+        var subject = CreateTestSubject();
+        var lapTimes = subject.GetByDriver(1);
+
+        using var _ = new AssertionScope();
+        lapTimes.Should().HaveCount(19008);
+        lapTimes.First().Should().Be(new LapTime()
+        {
+            RaceId = 841,
+            DriverId = 1,
+            Lap = 1,
+            Position = 2,
+            Milliseconds = 100573
+        });
+        lapTimes.Last().Should().Be(new LapTime()
+        {
+            RaceId = 1121,
+            DriverId = 1,
+            Lap = 57,
+            Position = 7,
+            Milliseconds = 96138,
+        });
+    }
+
     private static LapTimeInMemoryRepository CreateTestSubject()
     {
         var subject = new LapTimeInMemoryRepository();

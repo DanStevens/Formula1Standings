@@ -19,6 +19,7 @@
                 <DataGridTextColumn Header="Code" Binding="{Binding Model.Code}" />
                 <DataGridTextColumn Header="Reference" Binding="{Binding Model.Reference}" />
                 <DataGridTextColumn Header="Total Races" Binding="{Binding RacePartipicationCount}" />
+                <DataGridTextColumn Header="Podiums" Binding="{Binding PodiumsCount}" />
                 <DataGridHyperlinkColumn Header="URL" Binding="{Binding Model.Url}" />
             </DataGrid.Columns>
         </DataGrid>

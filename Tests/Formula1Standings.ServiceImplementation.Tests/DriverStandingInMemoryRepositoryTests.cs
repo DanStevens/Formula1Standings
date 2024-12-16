@@ -46,7 +46,27 @@ public class DriverStandingInMemoryRepositoryTests
     {
         var subject = CreateTestSubject();
         var standings = subject.GetByDriver(1);
+
+        using var _ = new AssertionScope();
         standings.Should().HaveCount(333);
+        standings.First().Should().Be(new DriverStanding()
+        {
+            Id = 1,
+            RaceId = 18,
+            DriverId = 1,
+            Points = 10,
+            Position = 1,
+            Wins = 1,
+        });
+        standings.Last().Should().Be(new DriverStanding()
+        {
+            Id = 72564,
+            RaceId = 1121,
+            DriverId = 1,
+            Points = 6,
+            Position = 7,
+            Wins = 0,
+        });
     }
 
     private static DriverStandingInMemoryRepository CreateTestSubject()

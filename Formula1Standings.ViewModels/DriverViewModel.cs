@@ -9,6 +9,7 @@ public class DriverViewModel(
 {
     private Driver? _model;
     private int _racePartipicationCount;
+    private int _podiumsCount;
 
     public Driver? Model
     {
@@ -20,6 +21,9 @@ public class DriverViewModel(
                 RacePartipicationCount = _model != null
                     ? driverStatsProvider.GetRaceParticipationCount(_model.Id)
                     : 0;
+                PodiumsCount = _model != null
+                    ? driverStatsProvider.GetPodiumsCount(_model.Id)
+                    : 0;
             }
         }
     }
@@ -28,5 +32,11 @@ public class DriverViewModel(
     {
         get => _racePartipicationCount;
         set => SetProperty(ref _racePartipicationCount, value);
+    }
+
+    public int PodiumsCount
+    {
+        get => _podiumsCount;
+        set => SetProperty(ref _podiumsCount, value);
     }
 }

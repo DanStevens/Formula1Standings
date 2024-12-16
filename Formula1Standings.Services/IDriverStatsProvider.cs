@@ -5,4 +5,6 @@ namespace Formula1Standings.Services;
 public interface IDriverStatsProvider
 {
     int GetRaceParticipationCount(int driverId);
+
+    int GetPodiumsCount(int driverId);
 }

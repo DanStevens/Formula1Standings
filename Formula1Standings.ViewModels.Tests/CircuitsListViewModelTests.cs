@@ -23,7 +23,9 @@ public class CircuitsListViewModelTests
     {
         var mockRepo = new Mock<ICircuitRepository>();
         mockRepo.Setup(x => x.GetAll()).Returns(Array.Empty<Circuit>());
-        var subject = new CircuitsListViewModel(mockRepo.Object, () => new CircuitViewModel());
+        var subject = new CircuitsListViewModel(
+            mockRepo.Object,
+            () => new CircuitViewModel(Mock.Of<IRaceRepository>()));
         subject.Circuits.Should().BeEmpty();
     }
 
@@ -33,13 +35,15 @@ public class CircuitsListViewModelTests
         IList<Circuit> allCircuits = [ExampleCircuit];
         var mockRepo = new Mock<ICircuitRepository>();
         mockRepo.Setup(x => x.GetAll()).Returns(allCircuits);
-        var subject = new CircuitsListViewModel(mockRepo.Object, () => new CircuitViewModel());
+        var subject = new CircuitsListViewModel(
+            mockRepo.Object,
+            () => new CircuitViewModel(Mock.Of<IRaceRepository>()));
         subject.Circuits.Should().BeEquivalentTo(allCircuits.Select(WrapCircuit));
     }
 
     private CircuitViewModel WrapCircuit(Circuit circuit)
     {
-        var vm = new CircuitViewModel();
+        var vm = new CircuitViewModel(Mock.Of<IRaceRepository>());
         vm.Model = circuit;
         return vm;
     }

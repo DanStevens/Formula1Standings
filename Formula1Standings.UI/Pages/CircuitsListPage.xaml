@@ -16,6 +16,7 @@
                 <DataGridTextColumn Header="Name" Binding="{Binding Model.Name}" />
                 <DataGridTextColumn Header="City" Binding="{Binding Model.City}" />
                 <DataGridTextColumn Header="Country" Binding="{Binding Model.Country}" />
+                <DataGridTextColumn Header="Number of Races" Binding="{Binding Races.Count}" />
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

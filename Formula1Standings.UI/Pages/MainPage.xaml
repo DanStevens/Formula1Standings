@@ -9,6 +9,7 @@
       Title="Main Page">
     <StackPanel Orientation="Vertical">
         <TextBlock Style="{StaticResource Heading1}" HorizontalAlignment="Center">Formula One Standings</TextBlock>
+        <TextBlock  HorizontalAlignment="Center">Version 0.2.0</TextBlock>
         <StackPanel Orientation="Vertical" Width="150" Margin="10">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Button}">

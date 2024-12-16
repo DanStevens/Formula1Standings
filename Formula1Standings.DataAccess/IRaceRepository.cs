@@ -4,4 +4,5 @@ namespace Formula1Standings.DataAccess;
 
 public interface IRaceRepository : IRepository<int, Race>
 {
+    IList<Race> GetByCircuit(int circuitId);
 }

@@ -30,11 +30,16 @@ namespace Formula1Standings.InMemoryRepositories
         {
             using var jsonFile = File.OpenRead(path);
             var allRecords = JsonSerializer.Deserialize<TModel[]>(jsonFile)!;
-            
+
             foreach (var record in allRecords)
+            {
                 _records.Add(ResolveKey(record), record);
+                OnRecordLoaded(record);
+            }
         }
 
         protected abstract TKey ResolveKey(TModel model);
+
+        protected virtual void OnRecordLoaded(TModel model) { }
     }
 }

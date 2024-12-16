@@ -1,6 +1,5 @@
 ﻿using Formula1Standings.DataAccess;
 using Formula1Standings.InMemoryRepositories;
-using Formula1Standings.Models;
 using Formula1Standings.UI.Pages;
 using Formula1Standings.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,6 +39,7 @@ public partial class App : Application
         services.AddTransient<DriverStandingsListViewModel>();
         services.AddTransient<RacesListViewModel>();
         services.AddTransient<LapTimesListViewModel>();
+        services.AddTransient<DriverStandingViewModel>();
 
         // Pages
         services.AddSingleton<MainPage>();
@@ -49,6 +49,9 @@ public partial class App : Application
         services.AddKeyedSingleton<Page, RacesListPage>(nameof(RacesListPage));
         services.AddKeyedSingleton<Page, LapTimesListPage>(nameof(LapTimesListPage));
 
+        // Factories
+        services.AddTransient<Func<DriverStandingViewModel>>(serviceProvider => () => serviceProvider.GetRequiredService<DriverStandingViewModel>());
+        
         return services.BuildServiceProvider();
     }
 

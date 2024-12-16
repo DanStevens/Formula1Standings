@@ -30,4 +30,6 @@ public record class Driver
     
     [JsonPropertyName("url")]
     public required Uri Url { get; init; }
+
+    public string FullName => $"{Forename} {Surname}";
 }

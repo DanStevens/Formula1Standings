@@ -11,6 +11,15 @@
       Title="Driver Standings">
     <DockPanel>
         <TextBlock DockPanel.Dock="Top" Style="{StaticResource Heading1}" HorizontalAlignment="Center">Driver Standings</TextBlock>
-        <DataGrid Margin="10" ItemsSource="{Binding DriverStandings}" IsReadOnly="True" />
+        <DataGrid Margin="10" ItemsSource="{Binding DriverStandings}" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Race" Binding="{Binding Race.Name}" />
+                <DataGridTextColumn Header="Year" Binding="{Binding Race.Year}" />
+                <DataGridTextColumn Header="Driver" Binding="{Binding Driver.FullName}" />
+                <DataGridTextColumn Header="Position" Binding="{Binding Model.Position}" />
+                <DataGridTextColumn Header="Wins" Binding="{Binding Model.Wins}" />
+                <DataGridTextColumn Header="Points" Binding="{Binding Model.Points}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </DockPanel>
 </Page>

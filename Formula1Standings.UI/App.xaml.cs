@@ -51,6 +51,7 @@ public partial class App : Application
         services.AddKeyedSingleton<Page, MainPage>(nameof(MainPage));
         services.AddKeyedSingleton<Page, CircuitsListPage>(nameof(CircuitsListPage));
         services.AddKeyedSingleton<Page, DriversListPage>(nameof(DriversListPage));
+        services.AddKeyedSingleton<Page, DriverDetailsPage>(nameof(DriverDetailsPage));
         services.AddKeyedSingleton<Page, DriverStandingsListPage>(nameof(DriverStandingsListPage));
         services.AddKeyedSingleton<Page, RacesListPage>(nameof(RacesListPage));
         services.AddKeyedSingleton<Page, LapTimesListPage>(nameof(LapTimesListPage));

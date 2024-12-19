@@ -1,0 +1,50 @@
+﻿<Page x:Class="Formula1Standings.UI.Pages.DriverDetailsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Formula1Standings.UI.Pages"
+      xmlns:viewmodels="clr-namespace:Formula1Standings.ViewModels;assembly=Formula1Standings.ViewModels"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      d:DataContext="{d:DesignInstance viewmodels:DriverViewModel, IsDesignTimeCreatable=False}"
+      Title="{Binding Model.FullName, StringFormat=Driver Details - \{0\}}">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="3"
+                   Style="{StaticResource Heading1}" Margin="0,0,0,10"
+                   Text="{Binding Model.FullName}" d:Text="Driver Name" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Number:" />
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Model.Number}" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Nationality:" />
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Model.Nationality}" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Date of Birth:" />
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding Model.DateOfBirth, StringFormat={}{0:dd/MM/yyyy}}" />
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="Code:" />
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Model.Code}" />
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="URL:" />
+        <TextBlock Grid.Row="5" Grid.Column="2">
+            <Hyperlink NavigateUri="{Binding Model.Url}">
+                <Run Text="{Binding Model.Url}" />
+            </Hyperlink>
+        </TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="1" Text="Total Races:" />
+        <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding RacePartipicationCount}" />
+        <TextBlock Grid.Row="7" Grid.Column="1" Text="Podiums:" />
+        <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding PodiumsCount}" />
+    </Grid>
+</Page>

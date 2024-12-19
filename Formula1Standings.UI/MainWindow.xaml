@@ -7,5 +7,4 @@
         xmlns:pages="clr-namespace:Formula1Standings.UI.Pages"
         mc:Ignorable="d"
         Title="Formula One Standings" Height="450" Width="800">
-    <Frame x:Name="RootFrame" NavigationUIVisibility="Visible" />
 </Window>

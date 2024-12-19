@@ -1,33 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using CommunityToolkit.Mvvm.Input;
+using Formula1Standings.Services;
 
 namespace Formula1Standings.UI.Pages;
-/// <summary>
-/// Interaction logic for MainPage.xaml
-/// </summary>
+
 public partial class MainPage : Page
 {
+    private readonly INavigationService? _navigationService;
+
     public MainPage()
     {
         InitializeComponent();
+        DataContext = this;
     }
 
-    public event EventHandler<NavigationEventArgs>? NavigationRequested;
-
-    private void HandleMenuButtonClick(object sender, RoutedEventArgs e)
+    public MainPage(INavigationService navigationService) : this()
     {
-        NavigationRequested?.Invoke(this, new((sender as FrameworkElement)?.Tag));
+        _navigationService = navigationService;
+        NavigateCommand = new RelayCommand<string>(Navigate);
+    }
+
+    public ICommand? NavigateCommand { get; }
+
+    public void Navigate(string? key)
+    {
+        if (key != null)
+            _navigationService?.Navigate(key);
     }
 }

@@ -14,6 +14,7 @@
         <DataGrid Margin="10" ItemsSource="{Binding Drivers}" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Model.FullName}" />
+                <DataGridTextColumn Header="Number" Binding="{Binding Model.Number}" />
                 <DataGridTextColumn Header="Nationality" Binding="{Binding Model.Nationality}" />
                 <DataGridTextColumn Header="Date of Birth" Binding="{Binding Model.DateOfBirth}" />
                 <DataGridTextColumn Header="Code" Binding="{Binding Model.Code}" />

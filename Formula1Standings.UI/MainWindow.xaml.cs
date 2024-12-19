@@ -1,26 +1,32 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Microsoft.Extensions.DependencyInjection;
+using Formula1Standings.Services;
+using Formula1Standings.UI.Pages;
 
-namespace Formula1Standings.UI
+namespace Formula1Standings.UI;
+
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+    private readonly INavigationService? _navigationService;
 
-        public void Navigate(Page page) => RootFrame.Navigate(page);
+    public MainWindow()
+    {
+        InitializeComponent();
+    }
+
+    public MainWindow(
+        [FromKeyedServices(App.RootFrame)] Frame rootFrame,
+        INavigationService navigationService)
+        : this()
+    {
+        _navigationService = navigationService;
+        AddChild(rootFrame);
+    }
+
+    protected override void OnContentRendered(EventArgs e)
+    {
+        base.OnContentRendered(e);
+        _navigationService?.Navigate(nameof(MainPage));
     }
 }

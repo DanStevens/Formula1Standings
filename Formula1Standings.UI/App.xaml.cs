@@ -1,10 +1,11 @@
-﻿using Formula1Standings.Services;
+﻿using System.Windows;
+using System.Windows.Controls;
 using Formula1Standings.ServiceImplementations;
+using Formula1Standings.Services;
 using Formula1Standings.UI.Pages;
+using Formula1Standings.UI.Services;
 using Formula1Standings.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
-using System.Windows;
-using System.Windows.Controls;
 
 namespace Formula1Standings.UI;
 
@@ -13,13 +14,12 @@ namespace Formula1Standings.UI;
 /// </summary>
 public partial class App : Application
 {
+    public const string RootFrame = nameof(RootFrame);
     private IServiceProvider _serviceProvider;
-    private MainWindow _mainWindow;
 
     public App()
     {
         _serviceProvider = ConfigureServices();
-        _mainWindow = new MainWindow();
     }
 
     private IServiceProvider ConfigureServices()
@@ -27,6 +27,7 @@ public partial class App : Application
         var services = new ServiceCollection();
 
         // Services
+        services.AddSingleton<INavigationService, NavigationService>();
         services.AddSingleton<ICircuitRepository>(new CircuitInMemoryRepository(@"Data\circuits.json"));
         services.AddSingleton<IDriverRepository>(new DriverInMemoryRepository(@"Data\drivers.json"));
         services.AddSingleton<IDriverStandingRepository>(new DriverStandingInMemoryRepository(@"Data\driver_standings.json"));
@@ -47,7 +48,7 @@ public partial class App : Application
         services.AddTransient<DriverViewModel>();
 
         // Pages
-        services.AddSingleton<MainPage>();
+        services.AddKeyedSingleton<Page, MainPage>(nameof(MainPage));
         services.AddKeyedSingleton<Page, CircuitsListPage>(nameof(CircuitsListPage));
         services.AddKeyedSingleton<Page, DriversListPage>(nameof(DriversListPage));
         services.AddKeyedSingleton<Page, DriverStandingsListPage>(nameof(DriverStandingsListPage));
@@ -61,24 +62,39 @@ public partial class App : Application
         services.AddTransient<Func<CircuitViewModel>>(serviceProvider => () => serviceProvider.GetRequiredService<CircuitViewModel>());
         services.AddTransient<Func<DriverViewModel>>(serviceProvider => () => serviceProvider.GetRequiredService<DriverViewModel>());
 
+        // MainWindow and RootFrame
+        services.AddKeyedSingleton(RootFrame, CreateRootFrame());
+        services.AddKeyedSingleton<Window, MainWindow>(nameof(MainWindow));
+
+        // Navigation Service
+        services.AddSingleton<INavigationService, NavigationService>();
+        services.AddKeyedSingleton(NavigationService.DestResolverKey, ResolveNavigationServiceDestination);
+
         return services.BuildServiceProvider();
+    }
+
+    private static Frame CreateRootFrame()
+    {
+        return new Frame()
+        {
+            Name = RootFrame,
+            NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Visible
+        };
+    }
+
+    private object? ResolveNavigationServiceDestination(string key, object arg)
+    {
+        var dest = _serviceProvider.GetKeyedService<Page>(key);
+        (dest as INavigatable)?.OnNavigated(arg);
+        return dest;
     }
 
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
 
-        var mainPage = _serviceProvider.GetService<MainPage>()!;
-        mainPage.NavigationRequested += HandleNavigationRequest;
-        _mainWindow.Navigate(mainPage);
-        _mainWindow.Show();
-    }
-
-    private void HandleNavigationRequest(object? sender, NavigationEventArgs e)
-    {
-        var page = _serviceProvider.GetKeyedService<Page>(e.Key);
-        if (page != null)
-            _mainWindow.Navigate(page);
+        var mainWindow = _serviceProvider.GetKeyedService<Window>(nameof(MainWindow));
+        mainWindow!.Show();
     }
 
     protected override void OnExit(ExitEventArgs e)
